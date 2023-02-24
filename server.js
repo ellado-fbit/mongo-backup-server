@@ -45,8 +45,8 @@ const createApp = (mongoClient) => {
         .then(cols => {
           const collections = cols.map(col => ({
             collection: col.name,
-            'list-complete-items': `http://localhost:${port}/read-col/db/${req.params.db}/col/${col.name}/itemsmode/complete`,
-            'list-summary-items': `http://localhost:${port}/read-col/db/${req.params.db}/col/${col.name}/itemsmode/summary`,
+            // 'list-complete-items': `http://localhost:${port}/read-col/db/${req.params.db}/col/${col.name}/itemsmode/complete`,
+            // 'list-summary-items': `http://localhost:${port}/read-col/db/${req.params.db}/col/${col.name}/itemsmode/summary`,
             'backups': fs.existsSync(path.join(backups_base_dir, `${req.params.db}-${col.name}`)) ? fs.readdirSync(path.join(backups_base_dir, `${req.params.db}-${col.name}`)).map(x => `http://localhost:${port}/${req.params.db}-${col.name}/${x}`) : [],
             'click-to-backup': `http://localhost:${port}/create-backup/db/${req.params.db}/col/${col.name}`,
             'click-to-upload-to-local-mongo': `http://localhost:${port}/upload-to-local-mongodb/db/${req.params.db}/col/${col.name}/file/${req.params.db}-${col.name}-YYYY-MM-DD.json`
